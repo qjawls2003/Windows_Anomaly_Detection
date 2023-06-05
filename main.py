@@ -11,7 +11,7 @@ def main():
 
     Word2Vec_model = vectorize(sentences_to_train)
 
-
+    print(Word2Vec_model.wv['Harambe'])
 
 
 if __name__ == '__main__':
