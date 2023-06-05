@@ -28,6 +28,10 @@ bazel run //:main
 - How to detect anomaly using the vectors?
 - What if the new commands have words not in the embedded model? How do we deal with new words not in the dictionary?
 
+#### Clustering
+- PCA for dimension reductions?
+- Multiple clusters based time (month, day, hour), process name, parent process name, user, domain: assign an cluster id for each log entry and the use word embedding on the command lines
+
 #### More pre-processing
 - How to formulate a sentence so that all features are added (time, users, parent processes, and ultimately command line words)
 - Generalize @timestamp to "month, day of the week, and day/night"
