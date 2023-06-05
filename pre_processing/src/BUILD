@@ -9,8 +9,18 @@ py_library(
     ],
     deps = [
         requirement("pandas"),
-        requirement("gensim")
     ],
     visibility = ["//visibility:public"],
     data = ["//pre_processing/data:WinEvent4688.csv"],
+)
+
+py_library(
+    name = "vectorize",
+    srcs = [
+        "vectorize.py"
+    ],
+    deps = [
+        requirement("gensim"),
+    ],
+    visibility = ["//visibility:public"],
 )

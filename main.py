@@ -1,5 +1,6 @@
 import sys
 from pre_processing.src.csv_to_df import *
+from pre_processing.src.vectorize import *
 
 def main():
     #csv to df to separate columns
@@ -7,6 +8,9 @@ def main():
 
     #clean the command line column
     sentences_to_train = preprocess(df_list_columns)
+
+    Word2Vec_model = vectorize(sentences_to_train)
+
 
 
 

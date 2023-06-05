@@ -10,6 +10,7 @@ py_binary(
     ],
     deps = [
         "//pre_processing/src:csv_to_df",
+        "//pre_processing/src:vectorize",
     ],
-    data = ["//pre_processing/data:WinEvent4688.csv"],
+    
 )
