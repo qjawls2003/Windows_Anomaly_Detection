@@ -8,7 +8,8 @@ py_library(
         "csv_to_df.py"
     ],
     deps = [
-        requirement("pandas")
+        requirement("pandas"),
+        requirement("gensim")
     ],
     visibility = ["//visibility:public"],
     data = ["//pre_processing/data:WinEvent4688.csv"],
