@@ -1,4 +1,4 @@
-# Windows_Anomaly_Detection
+# Windows Anomaly Detection for Processes
 
 ## Data Collection
 
