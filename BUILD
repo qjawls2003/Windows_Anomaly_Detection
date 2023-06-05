@@ -2,14 +2,14 @@ load("@rules_python//python:defs.bzl", "py_library", "py_binary")
 load("@python_deps//:requirements.bzl", "requirement")
 
 
-py_library(
-    name = "csv_to_df",
+
+py_binary(
+    name = "main",
     srcs = [
-        "csv_to_df.py"
+        "main.py"
     ],
     deps = [
-        requirement("pandas")
+        "//pre_processing/src:csv_to_df",
     ],
-    visibility = ["//visibility:public"],
     data = ["//pre_processing/data:WinEvent4688.csv"],
 )

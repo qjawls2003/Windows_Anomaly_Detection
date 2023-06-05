@@ -1,8 +1,8 @@
 import sys
-from csv_to_df import *
+from pre_processing.src.csv_to_df import *
 
 def main():
-    pass
+    csv_to_df()
 
 if __name__ == '__main__':
     main()
