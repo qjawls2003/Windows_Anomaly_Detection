@@ -19,3 +19,15 @@
 ```
 bazel run //:main
 ```
+
+# TODO
+
+#### Embedding
+- Figure out which word embedding to use
+- Figure out what the multi-dimensional vectors really mean
+- How to detect anomaly using the vectors?
+- What if the new commands have words not in the embedded model? How do we deal with new words not in the dictionary?
+
+#### More pre-processing
+- How to formulate a sentence so that all features are added (time, users, parent processes, and ultimately command line words)
+- Generalize @timestamp to "month, day of the week, and day/night"
