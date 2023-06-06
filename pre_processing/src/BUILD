@@ -14,24 +14,3 @@ py_library(
     data = ["//pre_processing/data:WinEvent4688.csv"],
 )
 
-py_library(
-    name = "tokenizer",
-    srcs = [
-        "tokenizer.py"
-    ],
-    deps = [
-        requirement("tokenizers"),
-    ],
-    visibility = ["//visibility:public"],
-)
-
-py_library(
-    name = "clustering",
-    srcs = [
-        "clustering.py"
-    ],
-    deps = [
-        requirement("scikit-learn"),
-    ],
-    visibility = ["//visibility:public"],
-)

@@ -39,9 +39,9 @@ class Tokenize:
 
         #save model
         dirname = os.path.dirname(__file__)
-        filename = os.path.join(dirname, '../data/tokenizer.json') #this will be saved in bazel's local dir
+        filename = os.path.join(dirname, '../data/tokenizer.json') #this will be saved in bazel's local
         self.tokenizer.save(filename)
-        #print(filename)
+        
         return self.tokenizer
 
     def get_training_corpus(self):

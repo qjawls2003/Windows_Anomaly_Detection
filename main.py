@@ -1,6 +1,6 @@
 import sys
 from pre_processing.src.preprocess import *
-from pre_processing.src.tokenizer import *
+from embedding.src.tokenizer import *
 
 def main():
 
