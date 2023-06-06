@@ -20,6 +20,7 @@ class Tokenize:
         self.tokenizer.pre_tokenizer = pre_tokenizers.Whitespace() #we only need to split the words by white spaces for normalization
         self.special_tokens = ["[UNK]", "[PAD]", "[CLS]", "[SEP]", "[MASK]"]
         self.trainer = trainers.WordPieceTrainer(vocab_size=50000, special_tokens=self.special_tokens)
+        self.token_loc = ''
 
 
 
@@ -40,6 +41,7 @@ class Tokenize:
         #save model
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, '../data/tokenizer.json') #this will be saved in bazel's local
+        self.token_loc = filename
         self.tokenizer.save(filename)
         
         return self.tokenizer
@@ -47,3 +49,7 @@ class Tokenize:
     def get_training_corpus(self):
         for i in range(0, len(self.dataset), 1000):
             yield self.dataset[i : i + 1000]
+
+    def get_tokenizer(self):
+        self.tokenize()
+        return Tokenizer.from_file(self.token_loc)

@@ -33,7 +33,7 @@ py_library(
         requirement("tqdm"),
         requirement("charset-normalizer"),
         requirement("idna"),
-        requirement("tensorflow"),
+        
     ],
     visibility = ["//visibility:public"],
 )

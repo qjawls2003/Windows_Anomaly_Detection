@@ -1,6 +1,5 @@
 
-from transformers import BertTokenizer
-import os
+from transformers import PreTrainedTokenizerFast
 
 
 class Transformer:
@@ -8,11 +7,17 @@ class Transformer:
     def __init__(self):
         pass
 
-    def init_tokenizer(self):
-        dirname = os.path.dirname(__file__)
-        filename = os.path.join(dirname, '../data/tokenizer.json') #this will be saved in bazel's local
+    def init_tokenizer(self,tokenizer):
 
-        tokenizer = BertTokenizer.from_pretrained(filename)
+        wrapped_tokenizer = PreTrainedTokenizerFast(
+            tokenizer_object=tokenizer,
+            # tokenizer_file="tokenizer.json", # You can load from the tokenizer file, alternatively
+            unk_token="[UNK]",
+            pad_token="[PAD]",
+            cls_token="[CLS]",
+            sep_token="[SEP]",
+            mask_token="[MASK]",
+        )
 
-        return tokenizer
+        return wrapped_tokenizer
 
