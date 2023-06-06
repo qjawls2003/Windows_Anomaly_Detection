@@ -19,7 +19,7 @@ class Tokenize:
         self.tokenizer = Tokenizer(models.WordPiece(unk_token="[UNK]")) #We have to specify the unk_token so the model knows what to return when it encounters characters it hasn’t seen before.
         self.tokenizer.pre_tokenizer = pre_tokenizers.Whitespace() #we only need to split the words by white spaces for normalization
         self.special_tokens = ["[UNK]", "[PAD]", "[CLS]", "[SEP]", "[MASK]"]
-        self.trainer = trainers.WordPieceTrainer(vocab_size=50000, special_tokens=self.special_tokens)
+        self.trainer = trainers.WordPieceTrainer(vocab_size=50000, special_tokens=self.special_tokens,min_frequency=10) #change min_frequency and vocab_size for fine-tuning
         self.token_loc = ''
 
 
@@ -53,3 +53,5 @@ class Tokenize:
     def get_tokenizer(self):
         self.tokenize()
         return Tokenizer.from_file(self.token_loc)
+    
+

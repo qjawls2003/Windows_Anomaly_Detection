@@ -62,10 +62,12 @@ class Preprocess:
                                 if len(w) > 0 and w[-1] == '"': #normalize ""
                                     w = w[:-1]
                             temp.append(w)
-                if temp:
-                    #put together time tokens and command line tokens
-                    sentence = ' '.join(user_info + process_time + temp)
-                    sentences.append(sentence)
+            if temp:
+                #put together time tokens and command line tokens
+                sentence = ' '.join(user_info + process_time + temp)
+            else:
+                sentence = ' '.join(user_info + process_time)
+            sentences.append(sentence)
                     #print(sentence)
         return sentences
 

@@ -1,5 +1,5 @@
 load("@rules_python//python:defs.bzl", "py_library", "py_binary")
-load("@python_deps//:requirements.bzl", "requirement")
+load("@python_deps//:requirements.bzl", "all_requirements", "requirement")
 
 py_library(
     name = "tokenizer",
@@ -8,7 +8,8 @@ py_library(
     ],
     deps = [
         requirement("tokenizers"),
-    ],
+    ] #+ all_requirements
+    ,
     data = ["//embedding/data:placeholder.txt"],
     visibility = ["//visibility:public"],
 )
@@ -19,6 +20,7 @@ py_library(
         "transformer.py"
     ],
     deps = [
+        
         requirement("transformers"),
         requirement("filelock"),
         requirement("regex"),
@@ -34,7 +36,8 @@ py_library(
         requirement("charset-normalizer"),
         requirement("idna"),
         
-    ],
+    ] #+ all_requirements
+    ,
     visibility = ["//visibility:public"],
 )
 
