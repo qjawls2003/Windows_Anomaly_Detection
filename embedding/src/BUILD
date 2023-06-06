@@ -14,12 +14,27 @@ py_library(
 )
 
 py_library(
-    name = "clustering",
+    name = "transformer",
     srcs = [
-        "clustering.py"
+        "transformer.py"
     ],
     deps = [
-        requirement("scikit-learn"),
+        requirement("transformers"),
+        requirement("filelock"),
+        requirement("regex"),
+        requirement("huggingface-hub"),
+        requirement("packaging"),
+        requirement("fsspec"),
+        requirement("typing-extensions"),
+        requirement("PyYAML"),
+        requirement("requests"),
+        requirement("urllib3"),
+        requirement("certifi"),
+        requirement("tqdm"),
+        requirement("charset-normalizer"),
+        requirement("idna"),
+        requirement("tensorflow"),
     ],
     visibility = ["//visibility:public"],
 )
+

@@ -1,6 +1,8 @@
 import sys
 from pre_processing.src.preprocess import *
 from embedding.src.tokenizer import *
+from embedding.src.transformer import *
+
 
 def main():
 
@@ -11,17 +13,19 @@ def main():
     #clean the command line column
     sentences_to_train = prep.data_prep(df_list_columns)
 
-    tokenizer = Tokenize(sentences_to_train) #train the sentences
-    model = tokenizer.tokenize() #make model
+    tokenizer_init = Tokenize(sentences_to_train) #train the sentences
+    tokenizer_init.tokenize() #make model and saves it
+
+    tokenizer_model = Transformer().init_tokenizer()
 
     #test
-    '''
-    encoding = model.encode('Harambe DESKTOP-7UHDSLL 4hour 45minute day WinRAR.exe explorer.exe C: Program Files WinRAR WinRAR.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon (1).zip C: Users Harambe Downloads project windows')
-    print(encoding.tokens)
-    print(encoding.type_ids)
-    print(model.decode(encoding.ids))
-    '''
+    #'''
+    encoding = tokenizer_model.encode('Harambe DESKTOP-7UHDSLL 4hour 45minute day WinRAR.exe explorer.exe C: Program Files WinRAR WinRAR.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon (1).zip C: Users Harambe Downloads project windows')
+    print(encoding)
+    print(tokenizer_model.convert_ids_to_tokens(encoding))
 
+    #'''
+    
     
 
 if __name__ == '__main__':

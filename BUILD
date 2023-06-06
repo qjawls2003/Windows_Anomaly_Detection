@@ -10,7 +10,7 @@ py_binary(
     deps = [
         "//pre_processing/src:preprocess",
         "//embedding/src:tokenizer",
-        "//embedding/src:clustering"
+        "//embedding/src:transformer"
     ],
     
 )
