@@ -11,12 +11,18 @@ def main():
     #clean the command line column
     sentences_to_train = prep.data_prep(df_list_columns)
 
-    tokenizer = Tokenize(sentences_to_train)
-    model = tokenizer.tokenize()
+    tokenizer = Tokenize(sentences_to_train) #train the sentences
+    model = tokenizer.tokenize() #make model
 
-    encoding = model.encode('DESKTOP-7UHDSLL$ WORKGROUP 5hour 47minute night filebeat.exe elastic-agent.exe C: Program Files Elastic')
+    #test
+    '''
+    encoding = model.encode('Harambe DESKTOP-7UHDSLL 4hour 45minute day WinRAR.exe explorer.exe C: Program Files WinRAR WinRAR.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon (1).zip C: Users Harambe Downloads project windows')
     print(encoding.tokens)
+    print(encoding.type_ids)
+    print(model.decode(encoding.ids))
+    '''
 
+    
 
 if __name__ == '__main__':
     main()
