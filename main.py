@@ -2,6 +2,7 @@ import sys
 from pre_processing.src.preprocess import *
 from embedding.src.tokenizer import *
 from embedding.src.transformer import *
+from modeling.src.model import *
 
 
 def main():
