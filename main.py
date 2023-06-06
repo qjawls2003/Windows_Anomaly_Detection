@@ -20,11 +20,12 @@ def main():
     
 
     #test
-    '''
+    #'''
+    print("testing")
     encoding = tokenizer_fast.encode('Harambe DESKTOP-7UHDSLL 4hour 45minute day WinRAR.exe explorer.exe C: Program Files WinRAR WinRAR.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon (1).zip C: Users Harambe Downloads project windows')
     print(encoding)
     print(tokenizer_fast.convert_ids_to_tokens(encoding))
-    '''
+    #'''
     
     
 
