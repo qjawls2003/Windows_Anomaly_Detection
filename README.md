@@ -22,6 +22,10 @@ bazel run //:main
 
 # TODO
 
+#### Modeling
+- Get PyTorch CUDA using NVIDIA GPU working
+- Complete layers
+
 #### Embedding
 - ~~Figure out which word embedding to use~~ Using WordPiece
 - Figure out what the multi-dimensional vectors really mean
