@@ -28,9 +28,9 @@ bazel run //:main
 
 #### Embedding
 - ~~Figure out which word embedding to use~~ Using WordPiece
-- Figure out what the multi-dimensional vectors really mean
+- ~~Figure out what the multi-dimensional vectors really mean~~
 - How to detect anomaly using the vectors?
-- What if the new commands have words not in the embedded model? How do we deal with new words not in the dictionary?
+- ~~What if the new commands have words not in the embedded model? How do we deal with new words not in the dictionary?~~ Masking Language Model
 
 #### Clustering
 - PCA for dimension reductions?
