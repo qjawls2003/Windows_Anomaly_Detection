@@ -23,7 +23,7 @@ bazel run //:main
 # TODO
 
 #### Embedding
-- Figure out which word embedding to use
+- ~~Figure out which word embedding to use~~ Using WordPiece
 - Figure out what the multi-dimensional vectors really mean
 - How to detect anomaly using the vectors?
 - What if the new commands have words not in the embedded model? How do we deal with new words not in the dictionary?
@@ -33,5 +33,5 @@ bazel run //:main
 - Multiple clusters based time (month, day, hour), process name, parent process name, user, domain: assign an cluster id for each log entry and the use word embedding on the command lines
 
 #### More pre-processing
-- How to formulate a sentence so that all features are added (time, users, parent processes, and ultimately command line words)
-- Generalize @timestamp to "month, day of the week, and day/night"
+- ~~How to formulate a sentence so that all features are added (time, users, parent processes, and ultimately command line words)~~
+- ~~Generalize @timestamp to "month, day of the week, and day/night"~~
