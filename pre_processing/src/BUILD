@@ -3,9 +3,9 @@ load("@python_deps//:requirements.bzl", "requirement")
 
 
 py_library(
-    name = "csv_to_df",
+    name = "preprocess",
     srcs = [
-        "csv_to_df.py"
+        "preprocess.py"
     ],
     deps = [
         requirement("pandas"),
@@ -21,6 +21,17 @@ py_library(
     ],
     deps = [
         requirement("gensim"),
+    ],
+    visibility = ["//visibility:public"],
+)
+
+py_library(
+    name = "clustering",
+    srcs = [
+        "clustering.py"
+    ],
+    deps = [
+        requirement("scikit-learn"),
     ],
     visibility = ["//visibility:public"],
 )

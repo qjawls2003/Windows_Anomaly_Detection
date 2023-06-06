@@ -1,3 +1,4 @@
+#pandas deps
 pandas==2.0.2
 tzdata==2023.3
 numpy==1.24.3
@@ -7,6 +8,11 @@ six==1.16.0
 smart-open==6.3.0
 gensim==4.3.1
 scipy==1.10.1
+
+#sklearn deps
+scikit-learn==1.2.2
+joblib==1.2.0
+threadpoolctl==3.1.0
 
 
 
