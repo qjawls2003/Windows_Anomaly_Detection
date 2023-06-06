@@ -15,12 +15,12 @@ py_library(
 )
 
 py_library(
-    name = "vectorize",
+    name = "tokenizer",
     srcs = [
-        "vectorize.py"
+        "tokenizer.py"
     ],
     deps = [
-        requirement("gensim"),
+        requirement("tokenizers"),
     ],
     visibility = ["//visibility:public"],
 )

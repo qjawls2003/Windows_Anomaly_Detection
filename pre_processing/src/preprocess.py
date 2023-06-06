@@ -42,40 +42,52 @@ class Preprocess:
             words = cmd.split("\\") #get rid of // for directories
             temp = []
             month, day, year, weekday, hour, minute, second, daynight = self.generalize_timestamp(timestamp) #list of times
-            process_time = [month, day, year, hour, minute, second, daynight, process, parent_process]
-
+            process_time = [str(hour) + 'hour', str(minute) + 'minute', daynight, process, parent_process]
+            user_info = [username, user_domain]
             #clean up command lines
             for word in words:
-                if word and word not in ('??','-'):     
-                    if word[0] == '"' and len(word) < 4:
-                        temp.append(word[1:])
-
-                    else:
-                        sub_words = word.split()
+                if word and word not in ('??',""):
+                        
+                    if word[0] == '"': #normalize "
+                        word = word[1:]
+                    if len(word) > 0 and word[-1] == '"': #normalize ""
+                        word = word[:-1] 
+                    
+                    sub_words = word.split()
+                    if sub_words:
                         for w in sub_words:
+                            if word and word not in ('??',""):
+                                if w[0] == '"': #normalize "
+                                    w = w[1:]
+                                if len(w) > 0 and w[-1] == '"': #normalize ""
+                                    w = w[:-1]
                             temp.append(w)
                 if temp:
                     #put together time tokens and command line tokens
-                    sentences.append(process_time + temp)
-
+                    sentence = ' '.join(user_info + process_time + temp)
+                    sentences.append(sentence)
+                    #print(sentence)
         return sentences
 
     def generalize_timestamp(self,timestamp):
         sep = timestamp.split()
         month = self.months[sep[0]]
+        month_name = sep[0]
         day = int(sep[1][:-1])
         year = int(sep[2])
         timeoftheday = sep[4].split(":")
         hour, minute, second = int(timeoftheday[0]), int(timeoftheday[1]), int(timeoftheday[2].split(".")[0])
         x_date = datetime.date(year, month, day)
-        weekday = int(x_date.strftime('%w'))
+        weekday = x_date.strftime('%A')
         daynight = self.generalize_day_night(hour)
-        
-        return month, day, year, weekday, hour, minute, second, daynight
+        #print(month_name, day, year, weekday, hour, minute, second, daynight)
+        return month_name, day, year, weekday, hour, minute, second, daynight
 
     def generalize_day_night(self,hour):
-        if hour >= 7 and hour < 17:
-            return 'day'
+        if hour >= 7 and hour < 12:
+            return 'morning'
+        elif hour >= 12 and hour < 18:
+            return 'afternoon'
         else:
             return 'night'
 

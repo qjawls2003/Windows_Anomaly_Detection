@@ -1,6 +1,6 @@
 import sys
 from pre_processing.src.preprocess import *
-from pre_processing.src.vectorize import *
+from pre_processing.src.tokenizer import *
 
 def main():
 
@@ -11,9 +11,11 @@ def main():
     #clean the command line column
     sentences_to_train = prep.data_prep(df_list_columns)
 
-    #Word2Vec_model = vectorize(sentences_to_train)
+    tokenizer = Tokenize(sentences_to_train)
+    model = tokenizer.tokenize()
 
-    #print(Word2Vec_model.wv['Harambe'])
+    encoding = model.encode('DESKTOP-7UHDSLL$ WORKGROUP 5hour 47minute night filebeat.exe elastic-agent.exe C: Program Files Elastic')
+    print(encoding.tokens)
 
 
 if __name__ == '__main__':

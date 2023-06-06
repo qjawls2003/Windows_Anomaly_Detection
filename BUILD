@@ -9,7 +9,7 @@ py_binary(
     ],
     deps = [
         "//pre_processing/src:preprocess",
-        "//pre_processing/src:vectorize",
+        "//pre_processing/src:tokenizer",
         "//pre_processing/src:clustering"
     ],
     
