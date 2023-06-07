@@ -14,7 +14,19 @@
 1. Convert CSV to python pandas dataframe (pre_processing/src/csv_to_df.py)
 2. Extract columns and create a list of words to minic a sentence
 3. Input the sentences to word embedding module (word2vec, etc.) (pre_processing/src/vectorize.py)
-4. next
+4. Prepare each sentence as a single string for tokenizer
+
+## Tokenizer
+1. Initialize Tokenizer model with WordPiece algorithm
+2. Initialize the trainer with hyperparameters such as vocab_size and min_frequency
+3. Input the dataset to tokenize all sentences 
+4. Outputs the token ids of all words in .json
+5. Using the Tokenizer, encode the dataset and outputs the ids of each word in the sentences and also the attention masks.
+
+## Modeling
+1. Install PyTorch and create a conda env to run cuda supported Pytorch.
+2. Prepare tensors to train the model
+3. Train the model
 
 ```
 bazel run //:main
@@ -25,6 +37,7 @@ bazel run //:main
 #### Modeling
 - Get PyTorch CUDA using NVIDIA GPU working
 - Complete layers
+- Test out different hyperparameters for training the models and customize layers
 
 #### Embedding
 - ~~Figure out which word embedding to use~~ Using WordPiece
