@@ -2,3 +2,4 @@ bazel-*
 .bazelrc
 modeling/data/pytorch_model.bin
 pre_processing/data/WinEvent4688.csv
+embedding/data/tokenizer.json
