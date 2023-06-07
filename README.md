@@ -35,7 +35,7 @@ bazel run //:main
 # TODO
 
 #### Modeling
-- Get PyTorch CUDA using NVIDIA GPU working
+- ~~Get PyTorch CUDA using NVIDIA GPU working~~ Using conda
 - Complete layers
 - Test out different hyperparameters for training the models and customize layers
 
