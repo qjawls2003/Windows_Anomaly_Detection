@@ -1,5 +1,5 @@
 
-from transformers import PreTrainedTokenizerFast, BertTokenizer
+from transformers import PreTrainedTokenizerFast
 #mport torch
 
 class Transformer:
@@ -25,10 +25,12 @@ class Transformer:
     def batch_encoding(self):
         #encode all sentences in the dataset
         batch = self.standard_tokenizer(self.dataset, max_length=512, padding='max_length', truncation=True)
-
         #prepare tensors
-        labels = [x.ids for x in batch]
-        mask = [x.attention_mask for x in batch]
+
+        labels, mask = [], []
+        for i in range(len(self.dataset)):
+            labels.append(batch[i].ids)
+            mask.append(batch[i].attention_mask)
 
         return labels, mask
 

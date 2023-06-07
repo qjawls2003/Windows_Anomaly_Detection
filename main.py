@@ -19,19 +19,22 @@ def main():
     tokenizer_model = tokenizer_init.get_tokenizer() #make pretrained and saves it
 
     #make custom masked language model
-    transformer = Transformer(sentences_to_train)
-    tokenizer_fast = transformer.init_tokenizer(tokenizer_model)
-    batch = transformer.batch_encoding()
-    
+    transformer = Transformer(sentences_to_train) #Step 1: Make a tokenizer
+    tokenizer_fast = transformer.init_tokenizer(tokenizer_model) #Step 2: Initialize the custom tokenizer
+    labels, mask = transformer.batch_encoding() #Step 3: encode the dataset using the tokenizer
+    mlm = MLM(labels,mask)
+    dataloader = mlm.load_dataset() #Step 4: prepare a dataset for training the model
+    model, device = mlm.prep_model()
+    mlm.train_model(model, dataloader, device)
 
     #test
-    #'''
+    '''
     print("testing:")
     encoding = tokenizer_fast.encode('Harambe DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows')
     token = tokenizer_fast('Harambe DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows')
     print(token)
     print(tokenizer_fast.convert_ids_to_tokens(encoding))
-    #'''
+    '''
     
     
 
