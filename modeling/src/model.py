@@ -5,9 +5,10 @@ from tqdm import *
 
 class MLM:
 
-    def __init__(self, labels, mask):
+    def __init__(self, labels, mask, tokenizer_length):
         self.labels = torch.tensor(labels)
         self.mask = torch.tensor(mask)
+        self.vocab_length = tokenizer_length
 
     def prep_tensor(self):
         
@@ -31,6 +32,8 @@ class MLM:
         
         encodings = {'input_ids': input_ids, 'attention_mask': self.mask, 'labels': self.labels}
 
+        print("{} tokenized sequences and each containing {} tokens".format(input_ids.shape[0],input_ids.shape[1]))
+        print("Input shape: ", input_ids.shape)
         return encodings
 
     def load_dataset(self):
@@ -41,7 +44,7 @@ class MLM:
 
     def prep_model(self):
         config = RobertaConfig(
-            vocab_size=4331,  # we align this to the tokenizer vocab_size
+            vocab_size=self.vocab_length,  # we align this to the tokenizer vocab_size
             max_position_embeddings=514,
             hidden_size=768,
             num_attention_heads=12,
@@ -50,16 +53,15 @@ class MLM:
         )
 
         model = RobertaForMaskedLM(config)
-        device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu') 
+        device = torch.device('cuda') #if torch.cuda.is_available() else torch.device('cpu') 
         model.to(device)
         return model, device
     
     def train_model(self, model, loader,device):
-        model.train()
         # activate training mode
         model.train()
         # initialize optimizer
-        optim = AdamW(model.parameters(), lr=1e-4)
+        optim = torch.optim.AdamW(model.parameters(), lr=1e-4)
 
         epochs = 2
 

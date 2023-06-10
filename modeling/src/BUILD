@@ -15,3 +15,16 @@ py_library(
     ,
     visibility = ["//visibility:public"],
 )
+
+py_library(
+    name = "model_test",
+    srcs = [
+        "model_test.py"
+    ],
+    deps = [      
+        requirement("transformers"),
+       
+    ] #+ all_requirements
+    ,
+    visibility = ["//visibility:public"],
+)
