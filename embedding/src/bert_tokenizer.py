@@ -6,7 +6,7 @@ import os
 
 class BertTokenize:
 
-    def __init__(self, dataset,filename):
+    def __init__(self, dataset):
 
         #init tokenizer
         self.dataset = dataset

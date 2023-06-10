@@ -12,8 +12,7 @@ class Init:
     def __init__(self,argv):
         self.sentences_to_train = None
         self.tokenizer_model = None
-        self.dirname = os.path.dirname(__file__)
-        self.filename = os.path.join(self.dirname, 'modeling\data\\') 
+        
         for i in range(1,len(argv)):
             f = 'self.{}()'.format(argv[i]) 
             eval(f)
@@ -34,7 +33,7 @@ class Init:
         #self.tokenizer_model = tokenizer_init.get_tokenizer() #make pretrained and saves it
 
         #build BertTokenizer from scratch that is compatible with BERT
-        tokenizer_init = BertTokenize(self.sentences_to_train,self.filename) #tokenize all words in the sentences
+        tokenizer_init = BertTokenize(self.sentences_to_train) #tokenize all words in the sentences
         tokenizer_init.tokenize
 
     def train(self):
@@ -61,11 +60,16 @@ class Init:
         
     def test(self):
         #test model
-        evaluate = Eval(self.filename, self.filename + 'tokenizer-vocab.txt')
+    
+        evaluate = Eval()
+        mask = evaluate.mask()
+        print(mask(f'{mask.tokenizer.mask_token} DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows'))
+        '''
         evaluate.init_model()
-        text = 'Harambe DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows'
+        text = ['Harambe DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows', 'Harambe DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows']
+        print("Testing: ", text)
         evaluate.eval_model(text)
-        
+        '''
         
        
     def all(self):
