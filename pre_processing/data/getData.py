@@ -5,7 +5,12 @@ import requests
 from retrying import retry
 
 def getData():
-    with open('env_var.txt') as env:
+
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, "env_var.txt")
+    pathname = os.path.join(dirname, "WinEvent4688.csv")
+    print(filename)
+    with open(filename) as env:
         lines = env.read().splitlines()
         username = lines[1]
         password = lines[2]
@@ -17,7 +22,6 @@ def getData():
         path = json_obj['path']
         download_url = f"http://{ip}{path}"
         print(download_url)
-        file_path = "WinEvent4688.csv"
         headers = {
                         "Content-Type": "text/csv",
                         "username":username,
@@ -32,8 +36,9 @@ def getData():
             return response
         try:
             response = make_request()
+            print("Making request...")
             if response.status_code == 200:
-                with open(file_path, "wb") as f:
+                with open(pathname, "wb") as f:
                     f.write(response.content)
                 print("Request Sucessful")
             else:

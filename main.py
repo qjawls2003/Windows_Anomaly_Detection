@@ -5,7 +5,7 @@ from embedding.src.bert_tokenizer import *
 from embedding.src.transformer import *
 from modeling.src.model import *
 from modeling.src.model_test import *
-
+from pre_processing.data.getData import *
 
 class Commands:
 
@@ -16,6 +16,11 @@ class Commands:
         for i in range(1,len(argv)):
             f = 'self.{}()'.format(argv[i]) 
             eval(f)
+
+    def getData(self):
+        print("Getting data from Kibana...")
+        getData()
+        print("Completed")
 
     def preprocess(self):
 
@@ -66,7 +71,8 @@ class Commands:
     
         evaluate = Eval()
         mask = evaluate.mask()
-        string = 'Harambe DESKTOP-7UHDSLL night <mask> kill.exe git.exe C: WINDOWS system32 cmd.exe'
+        #string = 'Harambe DESKTOP-7UHDSLL night <mask> kill.exe git.exe C: WINDOWS system32 cmd.exe'
+        string = '<mask> DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project wind'
 
         print(mask(string))
         '''
