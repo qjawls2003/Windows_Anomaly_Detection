@@ -2,3 +2,4 @@ bazel-*
 .bazelrc
 pre_processing/data/WinEvent4688.csv
 modeling/data/*
+pre_processing/data/env_var.txt

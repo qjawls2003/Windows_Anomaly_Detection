@@ -26,6 +26,8 @@ class Init:
         #clean the command line column
         self.sentences_to_train = prep.data_prep(df_list_columns)
 
+        print(self.sentences_to_train[:150])
+
     
     def tokenize(self):
         #build a standard tokenizer from scratch!
@@ -52,6 +54,7 @@ class Init:
         print(token)
         print(tokenizer_fast.convert_ids_to_tokens(encoding))
         '''
+        print("Training may take a while...")
         labels, mask = transformer.batch_encoding() #Step 3: encode the dataset using the tokenizer
         mlm = MLM(labels,mask,tokenizer_length)
         dataloader = mlm.load_dataset() #Step 4: prepare a dataset for training the model
@@ -63,14 +66,16 @@ class Init:
     
         evaluate = Eval()
         mask = evaluate.mask()
-        print(mask(f'{mask.tokenizer.mask_token} DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows'))
+        string = 'Harambe DESKTOP-7UHDSLL <mask> conhost.exe git.exe C: WINDOWS system32 conhost.exe'
+
+        print(mask(string))
         '''
         evaluate.init_model()
         text = ['Harambe DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows', 'Harambe DESKTOP-7UHDSLL 18hour 45minute night powershell.exe explorer.exe C: Program Files powershell.exe x -iext -ow -ver -- C: Users Harambe Document project windows Sysmon.zip C: Users Harambe Downloads project windows']
         print("Testing: ", text)
         evaluate.eval_model(text)
         '''
-        
+        'http://localhost:5601/api/reporting/generate/csv_searchsource?jobParams=%28browserTimezone%3AAmerica%2FNew_York%2Ccolumns%3A%21%28%27%40timestamp%27%2Chost.name%2Cprocess.name%2Cprocess.parent.name%2Cprocess.pid%2Cprocess.command_line%2Cuser.name%2Cuser.id%2Cuser.domain%29%2CobjectType%3Asearch%2CsearchSource%3A%28fields%3A%21%28%28field%3A%27%40timestamp%27%2Cinclude_unmapped%3Atrue%29%2C%28field%3Ahost.name%2Cinclude_unmapped%3Atrue%29%2C%28field%3Aprocess.name%2Cinclude_unmapped%3Atrue%29%2C%28field%3Aprocess.parent.name%2Cinclude_unmapped%3Atrue%29%2C%28field%3Aprocess.pid%2Cinclude_unmapped%3Atrue%29%2C%28field%3Aprocess.command_line%2Cinclude_unmapped%3Atrue%29%2C%28field%3Auser.name%2Cinclude_unmapped%3Atrue%29%2C%28field%3Auser.id%2Cinclude_unmapped%3Atrue%29%2C%28field%3Auser.domain%2Cinclude_unmapped%3Atrue%29%29%2Cfilter%3A%21%28%28meta%3A%28field%3A%27%40timestamp%27%2Cindex%3A%27logs-%2A%27%2Cparams%3A%28%29%29%2Cquery%3A%28range%3A%28%27%40timestamp%27%3A%28format%3Astrict_date_optional_time%2Cgte%3Anow-30d%2Fd%2Clte%3Anow%29%29%29%29%29%2Cindex%3A%27logs-%2A%27%2Cparent%3A%28filter%3A%21%28%29%2Cindex%3A%27logs-%2A%27%2Cquery%3A%28language%3Akuery%2Cquery%3A%27winlog.event_id%3A%204688%27%29%29%2Csort%3A%21%28%28%27%40timestamp%27%3Adesc%29%29%29%2Ctitle%3A%27Win%20Event%204688%27%2Cversion%3A%278.7.0%27%29'
        
     def all(self):
         self.preprocess()
@@ -81,6 +86,6 @@ class Init:
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print('Please input command: preprocess, tokenize, train, test')
+        print('Please input command: preprocess, tokenize, train, test, or all')
         exit(0)
     init = Init(sys.argv)
