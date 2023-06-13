@@ -7,7 +7,7 @@ from modeling.src.model import *
 from modeling.src.model_test import *
 
 
-class Init:
+class Commands:
 
     def __init__(self,argv):
         self.sentences_to_train = None
@@ -66,7 +66,7 @@ class Init:
     
         evaluate = Eval()
         mask = evaluate.mask()
-        string = 'Harambe DESKTOP-7UHDSLL <mask> conhost.exe git.exe C: WINDOWS system32 conhost.exe'
+        string = 'Harambe DESKTOP-7UHDSLL night <mask> kill.exe git.exe C: WINDOWS system32 cmd.exe'
 
         print(mask(string))
         '''
@@ -75,7 +75,6 @@ class Init:
         print("Testing: ", text)
         evaluate.eval_model(text)
         '''
-        'http://localhost:5601/api/reporting/generate/csv_searchsource?jobParams=%28browserTimezone%3AAmerica%2FNew_York%2Ccolumns%3A%21%28%27%40timestamp%27%2Chost.name%2Cprocess.name%2Cprocess.parent.name%2Cprocess.pid%2Cprocess.command_line%2Cuser.name%2Cuser.id%2Cuser.domain%29%2CobjectType%3Asearch%2CsearchSource%3A%28fields%3A%21%28%28field%3A%27%40timestamp%27%2Cinclude_unmapped%3Atrue%29%2C%28field%3Ahost.name%2Cinclude_unmapped%3Atrue%29%2C%28field%3Aprocess.name%2Cinclude_unmapped%3Atrue%29%2C%28field%3Aprocess.parent.name%2Cinclude_unmapped%3Atrue%29%2C%28field%3Aprocess.pid%2Cinclude_unmapped%3Atrue%29%2C%28field%3Aprocess.command_line%2Cinclude_unmapped%3Atrue%29%2C%28field%3Auser.name%2Cinclude_unmapped%3Atrue%29%2C%28field%3Auser.id%2Cinclude_unmapped%3Atrue%29%2C%28field%3Auser.domain%2Cinclude_unmapped%3Atrue%29%29%2Cfilter%3A%21%28%28meta%3A%28field%3A%27%40timestamp%27%2Cindex%3A%27logs-%2A%27%2Cparams%3A%28%29%29%2Cquery%3A%28range%3A%28%27%40timestamp%27%3A%28format%3Astrict_date_optional_time%2Cgte%3Anow-30d%2Fd%2Clte%3Anow%29%29%29%29%29%2Cindex%3A%27logs-%2A%27%2Cparent%3A%28filter%3A%21%28%29%2Cindex%3A%27logs-%2A%27%2Cquery%3A%28language%3Akuery%2Cquery%3A%27winlog.event_id%3A%204688%27%29%29%2Csort%3A%21%28%28%27%40timestamp%27%3Adesc%29%29%29%2Ctitle%3A%27Win%20Event%204688%27%2Cversion%3A%278.7.0%27%29'
        
     def all(self):
         self.preprocess()
@@ -88,4 +87,4 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('Please input command: preprocess, tokenize, train, test, or all')
         exit(0)
-    init = Init(sys.argv)
+    command = Commands(sys.argv)
