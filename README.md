@@ -1,6 +1,6 @@
 # Windows Anomaly Detection for Processes
 
-## Idea:
+## Idea
 Utilize the latest natural language processing techniques to identify anomalous processes/commands executed on Windows host.
 1. Collect Windows Event 4688 and ingest them to SIEM
 2. Export data as a csv and feed to pre-processing
