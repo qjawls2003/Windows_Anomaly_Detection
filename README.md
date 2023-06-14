@@ -40,7 +40,13 @@ Utilize the latest natural language processing techniques to identify anomalous 
 3. Train the model
 
 ```
-bazel run //:main
+bazel run //:main (does not currently work with pytorch)
+```
+### Use Anaconda
+```
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+  
+python main.py all [getData preprocess tokenize train test]
 ```
 
 # TODO
